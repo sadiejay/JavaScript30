@@ -2,28 +2,23 @@
 var gulp = require('gulp');
 
 // Include Our Plugins
-var jshint = require('gulp-jshint');
 var browserSync = require('browser-sync').create();
 
-// Lint Task
-gulp.task('lint', function() {
-return gulp.src('**/index.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
-});
-
 ////////
-// localhost address with a port + watching scss/html files
+// localhost address with a port + watching css/html files
 gulp.task('serve', function() {
 
+// change the server each time you change projects
     browserSync.init({
-        server:true
+      server: {
+        baseDir: "01 - JavaScript Drum Kit",
+        index: "index-START.html"
+      }
     });
-
-    gulp.watch('**/index.js', ['lint']);
-    gulp.watch("**/*.html", "**/*.css" ).on('change', browserSync.reload);
+    gulp.watch("**/*.html").on('change', browserSync.reload);
+    gulp.watch("**/*.css").on('change', browserSync.reload);
 });
 /////////
 
 // Default Task
-gulp.task('default', ['lint', 'serve']);
+gulp.task('default', ['serve']);
