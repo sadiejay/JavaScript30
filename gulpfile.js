@@ -7,7 +7,7 @@ var browserSync = require('browser-sync').create();
 
 // Lint Task
 gulp.task('lint', function() {
-return gulp.src('app/index.js')
+return gulp.src('**/index.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
@@ -17,11 +17,11 @@ return gulp.src('app/index.js')
 gulp.task('serve', function() {
 
     browserSync.init({
-        server:"app"
+        server:true
     });
 
     gulp.watch('app/index.js', ['lint']);
-    gulp.watch("app/*.html", "app/*.css" ).on('change', browserSync.reload);
+    gulp.watch("**/*.html", "**/*.css" ).on('change', browserSync.reload);
 });
 /////////
 
