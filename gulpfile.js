@@ -20,7 +20,7 @@ gulp.task('serve', function() {
         server:true
     });
 
-    gulp.watch('app/index.js', ['lint']);
+    gulp.watch('**/index.js', ['lint']);
     gulp.watch("**/*.html", "**/*.css" ).on('change', browserSync.reload);
 });
 /////////
